@@ -65,11 +65,12 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
 
     function enterRaffle() public payable {
         if (msg.value < i_entranceFee) {
-            revert Raffle__NotOpen();
-        }
-        if (s_raffleState != RaffleState.OPEN) {
             revert Raffle__NotEnoughETHEntered();
         }
+        if (s_raffleState != RaffleState.OPEN) {
+            revert Raffle__NotOpen();
+        }
+
         s_players.push(payable(msg.sender));
         emit RaffleEnter(msg.sender);
     }
@@ -163,5 +164,9 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
 
     function getRequestedConfirmations() public pure returns (uint256) {
         return REQUEST_CONFIRMATIONS;
+    }
+
+    function getInterval() public view returns (uint256) {
+        return i_interval;
     }
 }
