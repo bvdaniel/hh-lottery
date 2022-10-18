@@ -46,4 +46,13 @@ module.exports = {
         noColors: true,
         // coinmarketcap: COINMARKETCAP_API_KEY,
     },
+    mocha: {
+        timeout: 200000,
+    },
+    etherscan: {
+        // yarn hardhat verify --network <NETWORK> <CONTRACT_ADDRESS> <CONSTRUCTOR_PARAMETERS>
+        apiKey: {
+            goerli: ETHERSCAN_API_KEY,
+        },
+    },
 }
